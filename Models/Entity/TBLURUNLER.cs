@@ -22,5 +22,7 @@ namespace FahharTest.Models.Entity
         public Nullable<bool> ISKARGO { get; set; }
         public Nullable<decimal> SEPETFIYAT { get; set; }
         public string RESIM { get; set; }
+
+      
     }
 }
