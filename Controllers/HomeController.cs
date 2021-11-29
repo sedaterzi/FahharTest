@@ -12,10 +12,8 @@ namespace FahharTest.Controllers
         DBFAHHAREntities1 db = new DBFAHHAREntities1();
         public ActionResult Index()
         {
-
-            //var degerler = db.TBLURUNLER.ToList();
-
-            return View(/*degerler*/);
+            var urun = db.TBLURUNLER.ToList();
+            return View(urun);
         }
         
         [HttpGet]
@@ -42,5 +40,6 @@ namespace FahharTest.Controllers
             return RedirectToAction("Index");
         }
 
+        
     }
 }
