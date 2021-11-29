@@ -40,6 +40,40 @@ namespace FahharTest.Controllers
             return RedirectToAction("Index");
         }
 
-        
+        public ActionResult UrunIslem()
+        {
+            var urun = db.TBLURUNLER.ToList();
+            return View(urun);
+        }
+        public ActionResult UrunGetir(int id)
+        {
+
+            var urun = db.TBLURUNLER.Find(id);
+
+            return View("UrunGetir",urun);
+        }
+        public ActionResult UrunDuzenle(TBLURUNLER k)
+        {
+            var urun = db.TBLURUNLER.Find(k.ID);
+            urun.ADI = k.ADI;
+            urun.ACIKLAMA = k.ACIKLAMA;
+            urun.FIYAT = k.FIYAT;
+            urun.INDIRIM = k.INDIRIM;
+            urun.RESIM = k.RESIM;
+            var indirim = ((k.FIYAT * k.INDIRIM) / 100);
+            var sepetfiyat = k.FIYAT - indirim;
+            k.SEPETFIYAT = sepetfiyat;
+            urun.SEPETFIYAT = k.SEPETFIYAT;
+            urun.ISKARGO = k.ISKARGO;
+            db.SaveChanges(); 
+            return RedirectToAction("UrunIslem");
+        }
+        public ActionResult UrunSil(int id)
+        {
+            var urun = db.TBLURUNLER.Find(id);
+            db.TBLURUNLER.Remove(urun);
+            db.SaveChanges();
+            return RedirectToAction("UrunIslem");
+        }
     }
 }

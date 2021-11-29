@@ -1,7 +1,7 @@
 ﻿@using FahharTest.Models.Entity
 @model  List<TBLURUNLER>
 @{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "UrunIslem";
     string isKargo = "";
     string cls = "";
 }
@@ -62,7 +62,7 @@
                                         if (k.ISKARGO == true) { isKargo = "KARGO BEDAVA!"; cls = "new"; } else { isKargo = ""; }
                                         <!-- product -->
                                         <div class="product">
-                                            <div class="product-img" >
+                                            <div class="product-img">
                                                 <img src="~/tmp/tmp/img/product01.png" alt="">
                                                 <div class="product-label">
                                                     <span class="sale">%@k.INDIRIM</span>
@@ -82,9 +82,14 @@
                                                     <i class="fa fa-star"></i>
                                                 </div>
                                                 <div class="product-btns">
-                                                    <button class="add-to-wishlist"><i class="fa fa-heart-o"></i><span class="tooltipp">add to wishlist</span></button>
-                                                    <button class="add-to-compare"><i class="fa fa-exchange"></i><span class="tooltipp">add to compare</span></button>
-                                                    <button class="quick-view"><i class="fa fa-eye"></i><span class="tooltipp">quick view</span></button>
+
+
+                                                    @Html.ActionLink("Sil", "UrunSil", new { id = k.ID }, new
+                                                {
+                                                onClick = "return confirm('Silmek İstiyor musunuz?')"
+                                                })
+
+                                                    <a href="/Home/UrunGetir/@k.ID">Güncelle</a>
                                                 </div>
                                             </div>
                                             <div class="add-to-cart">
